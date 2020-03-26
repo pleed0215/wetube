@@ -4,6 +4,10 @@ import del from "del";
 import ws from "gulp-webserver";
 import image from "gulp-image";
 import sass from "gulp-sass";
+import autop from "gulp-autoprefixer";
+import csso from "gulp-csso";
+import browserfy from "gulp-bro";
+import babelify from "babelify";
 
 sass.compiler = require('node-sass');
 
@@ -21,6 +25,11 @@ const routes = {
         watch: "src/scss/**/*.scss",
         src: "src/scss/styles.scss",
         dest: "dest/css"
+    },
+    js: {
+        watch: "src/js/**/*.js",
+        src: "src/js/*",
+        dest: "dest/js"
     }
 }
 
@@ -43,8 +52,17 @@ const img = () => gulp
                     .pipe(gulp.dest(routes.img.dest));
 const styles = () => gulp
                     .src(routes.css.src)
+                    .pipe(autop ( { cascade: false }))
+                    /*.pipe(csso({
+                        restructure: true,
+                        sourceMap: true,
+                        debug: true
+                    }))*/
                     .pipe(sass().on('error', sass.logError))
+                    .pipe(csso())
                     .pipe(gulp.dest(routes.css.dest));
+const js = () => gulp.src (routes.js.src)
+                     .pipe
 
 const prepare = gulp.series([clean, img]);
 const assets = gulp.series([pug, styles]);

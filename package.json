@@ -21,7 +21,12 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "babelify": "^10.0.0",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-bro": "^2.0.0",
+    "gulp-csso": "^4.0.1",
     "gulp-sass": "^4.0.2",
     "mkdirp": "^1.0.3"
-  }
+  },
+  "browserslist": "last 2 versions"
 }
